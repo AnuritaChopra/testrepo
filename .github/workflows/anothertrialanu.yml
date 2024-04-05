@@ -1,4 +1,3 @@
-
 name: Run Testing Automation on Deployment with slack notification
 
 on:
@@ -10,14 +9,14 @@ on:
   
 jobs:
   test_and_notify:
-     name: Build Testing
-     runs-on: ubuntu-latest
+    name: Build Testing
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout Code
         uses: actions/checkout@v2
 
-     - name: Install Dependencies
+      - name: Install Dependencies
         run: npm install mocha
 
       - name: Install Node.js
@@ -25,17 +24,15 @@ jobs:
         with:
           node-version: '14'
    
-          - name: Run tests
+      - name: Run tests
         run: npm run test:all
-
 
       - name: Run a multi-line script
         run: |
-          echo Add otyhrtyther actions to build,
-          echo testaaaaaaaa, and deploy your project.
+          echo Add other actions to build,
+          echo test, and deploy your project.
 
-
-# Notify test results in Slack
+      # Notify test results in Slack
       - name: Notify Slack
         uses: slackapi/slack-github-action@v1.25.0
         with:
@@ -48,7 +45,6 @@ jobs:
                   "text": {
                     "type": "mrkdwn",
                     "text": "A build is deployed into ${{ github.repository }} :tada:\n*${{ github.event.pull_request.user.login }}* has just contributed to ${{ github.repository }} :partying_face:"
-                  }"
                   }
                 }
               ]
