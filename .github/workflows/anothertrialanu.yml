@@ -22,7 +22,7 @@ jobs:
       - name: Install Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '14'
+          node-version: '21'
    
       - name: Run tests
         run: npm run test:all
@@ -43,8 +43,8 @@ jobs:
                 {
                   "type": "section",
                   "text": {
-                    "type": "mrkdwn",
-                    "text": "A build is deployed into ${{ github.repository }} :tada:\n*${{ github.event.pull_request.user.login }}* has just contributed to ${{ github.repository }} :partying_face:"
+                    "type": "mrkdwn"
+                    
                   }
                 }
               ]
