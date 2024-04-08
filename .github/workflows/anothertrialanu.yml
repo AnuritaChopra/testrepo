@@ -29,8 +29,8 @@ jobs:
 
       - name: Run a multi-line script
         run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+          echo ANU add other actions to build,
+          echo ANU test, and deploy your project.
 
       # Notify test results in Slack
       - name: Notify Slack
@@ -44,11 +44,13 @@ jobs:
                   "type": "section",
                   "text": {
                     "type": "mrkdwn"
+                    "text": "A PR was just merged into ${{ github.repository }} :tada:\n*${{ github.event.pull_request.user.login }}* has just contributed to ${{ github.repository }} :partying_face:"
+              
                     
                   }
                 }
               ]
             }
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-          SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
+        #env:
+         # SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          #SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
