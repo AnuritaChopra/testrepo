@@ -1,0 +1,30 @@
+
+name: Automation report for contract, component & integration test
+
+on:
+  schedule:
+    - cron: "30 8,18 * * *"
+  workflow_dispatch: # This triggers the workflow manuallyy
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '20'
+    
+    - name: Install Node Modules
+      run: npm install
+      
+    - name: Run API Tests
+      run: npm run test:TestSuite  
+      working-directory: ${{ github.workspace }}
+
+    - name: Run JavaScript file
+      run: node test/frontendtest/generateslackpayload.js
